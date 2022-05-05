@@ -1,6 +1,6 @@
 package com.company;
 
-public class Sembako implements Item{
+public class Sembako implements SembakoInterface {
     public String keterangan = "#Daftar Sembako";
 
     public Sembako(){
