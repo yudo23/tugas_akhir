@@ -5,64 +5,74 @@ import java.awt.event.*;
 import javax.swing.border.Border;
 
 public class Main extends Setting implements ActionListener{
-    private JFrame jframe;
-    private Container content;
-    private JLabel title;
-    private JPanel panel_sembako;
-    private JPanel panel_pulsa;
-    private JCheckBox cb_minyakgoreng;
-    private JCheckBox cb_gula;
-    private JCheckBox cb_beras;
-    private JCheckBox cb_telur;
-    private JCheckBox cb_susu;
-    private JTextField tf_harga_minyakgoreng;
-    private JTextField tf_harga_gula;
-    private JTextField tf_harga_beras;
-    private JTextField tf_harga_telur;
-    private JTextField tf_harga_susu;
-    private JTextField tf_pcs_minyakgoreng;
-    private JTextField tf_pcs_gula;
-    private JTextField tf_pcs_beras;
-    private JTextField tf_pcs_telur;
-    private JTextField tf_pcs_susu;
-    private JLabel lb_pcs_minyakgoreng;
-    private JLabel lb_pcs_gula;
-    private JLabel lb_pcs_beras;
-    private JLabel lb_pcs_telur;
-    private JLabel lb_pcs_susu;
-    private JTextField tf_total_minyakgoreng;
-    private JTextField tf_total_gula;
-    private JTextField tf_total_beras;
-    private JTextField tf_total_telur;
-    private JTextField tf_total_susu;
-    private JComboBox cbx_minyakgoreng;
-    private JComboBox cbx_gula;
-    private JComboBox cbx_beras;
-    private JComboBox cbx_telur;
-    private JComboBox cbx_susu;
+    public JFrame jframe;
+    public Container content;
+    public JLabel title;
+    public JPanel panel_sembako;
+    public JPanel panel_pulsa;
+    public JCheckBox cb_minyakgoreng;
+    public JCheckBox cb_gula;
+    public JCheckBox cb_beras;
+    public JCheckBox cb_telur;
+    public JCheckBox cb_susu;
+    public JTextField tf_harga_minyakgoreng;
+    public JTextField tf_harga_gula;
+    public JTextField tf_harga_beras;
+    public JTextField tf_harga_telur;
+    public JTextField tf_harga_susu;
+    public JTextField tf_pcs_minyakgoreng;
+    public JTextField tf_pcs_gula;
+    public JTextField tf_pcs_beras;
+    public JTextField tf_pcs_telur;
+    public JTextField tf_pcs_susu;
+    public JLabel lb_pcs_minyakgoreng;
+    public JLabel lb_pcs_gula;
+    public JLabel lb_pcs_beras;
+    public JLabel lb_pcs_telur;
+    public JLabel lb_pcs_susu;
+    public JTextField tf_total_minyakgoreng;
+    public JTextField tf_total_gula;
+    public JTextField tf_total_beras;
+    public JTextField tf_total_telur;
+    public JTextField tf_total_susu;
+    public JComboBox cbx_minyakgoreng;
+    public JComboBox cbx_gula;
+    public JComboBox cbx_beras;
+    public JComboBox cbx_telur;
+    public JComboBox cbx_susu;
 
-    private  JLabel lb_subtotal_sembako;
-    private JTextField tf_subtotal_sembako;
-    private JButton button_reset_sembako;
+    public  JLabel lb_subtotal_sembako;
+    public JTextField tf_subtotal_sembako;
+    public JButton button_reset_sembako;
 
-    private boolean is_buy_minyakgoreng = false;
-    private boolean is_buy_gula = false;
-    private boolean is_buy_beras = false;
-    private boolean is_buy_telur = false;
-    private boolean is_buy_susu = false;
+    public boolean is_buy_minyakgoreng = false;
+    public boolean is_buy_gula = false;
+    public boolean is_buy_beras = false;
+    public boolean is_buy_telur = false;
+    public boolean is_buy_susu = false;
+
+    public boolean is_logined = false;
 
     Border br = BorderFactory.createLineBorder(Color.black);
 
     public static void main(String[] args) {
-        // write your code here
-
         Main main = new Main();
-        main.splash_screen_open();
-        main.frame_open();
-        main.title();
-        main.panel_sembako();
-        main.panel_pulsa();
-        main.frame_close();
+        main.transaksi_page();
+    }
+
+    public void transaksi_page(){
+        if(is_logined == true){
+            Main main = new Main();
+            main.splash_screen_open();
+            main.frame_open();
+            main.title();
+            main.panel_sembako();
+            main.panel_pulsa();
+            main.frame_close();
+        }
+        else{
+            Login login = new Login();
+        }
     }
 
     public void splash_screen_open(){
