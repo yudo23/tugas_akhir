@@ -1,6 +1,6 @@
 package com.company;
 
-public interface Item {
+public interface SembakoInterface {
     public String[][] ls_mg = new String[3][2];
     public String[][] ls_gula = new String[3][2];
     public String[][] ls_beras = new String[3][2];
