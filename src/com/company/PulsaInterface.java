@@ -1,6 +1,6 @@
 package com.company;
 
-public interface ItemPulsa {
+public interface PulsaInterface {
     public String[][] lp_tsel = new String[3][2];
     public String[][] lp_isat = new String[3][2];
     public String[][] lp_smart = new String[3][2];
