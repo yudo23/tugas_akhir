@@ -40,16 +40,55 @@ public class Main extends Setting implements ActionListener{
     public JComboBox cbx_beras;
     public JComboBox cbx_telur;
     public JComboBox cbx_susu;
+    public JCheckBox cb_tsel;
+    public JCheckBox cb_isat;
+    public JCheckBox cb_smart;
+    public JCheckBox cb_axis;
+    public JCheckBox cb_tri;
+    public JTextField tf_harga_tsel;
+    public JTextField tf_harga_isat;
+    public JTextField tf_harga_smart;
+    public JTextField tf_harga_axis;
+    public JTextField tf_harga_tri;
+    public JTextField tf_pcs_tsel;
+    public JTextField tf_pcs_isat;
+    public JTextField tf_pcs_smart;
+    public JTextField tf_pcs_axis;
+    public JTextField tf_pcs_tri;
+    public JLabel lb_pcs_tsel;
+    public JLabel lb_pcs_isat;
+    public JLabel lb_pcs_smart;
+    public JLabel lb_pcs_axis;
+    public JLabel lb_pcs_tri;
+    public JTextField tf_total_tsel;
+    public JTextField tf_total_isat;
+    public JTextField tf_total_smart;
+    public JTextField tf_total_axis;
+    public JTextField tf_total_tri;
+    public JComboBox cbx_tsel;
+    public JComboBox cbx_isat;
+    public JComboBox cbx_smart;
+    public JComboBox cbx_axis;
+    public JComboBox cbx_tri;
 
-    public  JLabel lb_subtotal_sembako;
+
+    public JLabel lb_subtotal_sembako;
     public JTextField tf_subtotal_sembako;
     public JButton button_reset_sembako;
+    public JLabel lb_subtotal_pulsa;
+    public JTextField tf_subtotal_pulsa;
+    public JButton button_reset_pulsa;
 
     public boolean is_buy_minyakgoreng = false;
     public boolean is_buy_gula = false;
     public boolean is_buy_beras = false;
     public boolean is_buy_telur = false;
     public boolean is_buy_susu = false;
+    public boolean is_buy_tsel = false;
+    public boolean is_buy_isat = false;
+    public boolean is_buy_smart = false;
+    public boolean is_buy_axis = false;
+    public boolean is_buy_tri = false;
 
     public boolean is_logined = false;
 
@@ -103,7 +142,7 @@ public class Main extends Setting implements ActionListener{
     {
         JLabel footer = new JLabel();
         footer.setText(developer());
-        footer.setBounds(15, 810, 1000, 100);
+        footer.setBounds(15, 700, 1000, 100);
         footer.setFont(new Font("Arial",Font.BOLD,12));
 
         content.add(footer);
@@ -115,7 +154,7 @@ public class Main extends Setting implements ActionListener{
         title = new JLabel("TOKO "+nama_toko());
         title.setFont(new Font("Arial",Font.BOLD,30));
         title.setSize(300,30);
-        title.setLocation(700,30);
+        title.setLocation(600,30);
         content.add(title);
     }
 
@@ -124,7 +163,7 @@ public class Main extends Setting implements ActionListener{
 
         JLabel jdl = new JLabel(sembako.keterangan);
         jdl.setFont(new Font("Arial",Font.BOLD,16));
-        jdl.setBounds(16,2,500,20);
+        jdl.setBounds(15,2,500,20);
 
         panel_sembako = new JPanel();
         panel_sembako.setLayout(null);
@@ -140,7 +179,7 @@ public class Main extends Setting implements ActionListener{
         showing_button_reset_sembako();
 
         panel_sembako.setBackground(Color.lightGray);
-        panel_sembako.setBounds(100,90,600,350);
+        panel_sembako.setBounds(70,90,600,350);
 
         content.add(panel_sembako);
 
@@ -149,15 +188,23 @@ public class Main extends Setting implements ActionListener{
     public void panel_pulsa(){
         JLabel jdl = new JLabel("#Daftar Pulsa");
         jdl.setFont(new Font("Arial",Font.BOLD,16));
-        jdl.setBounds(16,2,500,20);
+        jdl.setBounds(15,2,500,20);
 
         panel_pulsa = new JPanel();
         panel_pulsa.setLayout(null);
 
         panel_pulsa.setBackground(Color.lightGray);
-        panel_pulsa.setBounds(850,90,600,350);
+        panel_pulsa.setBounds(700,90,600,350);
 
         panel_pulsa.add(jdl);
+
+        showing_tsel();
+        showing_isat();
+        showing_smart();
+        showing_axis();
+        showing_tri();
+        showing_tf_subtotal_pulsa();
+        showing_button_reset_pulsa();
 
         content.add(panel_pulsa);
 
@@ -208,7 +255,6 @@ public class Main extends Setting implements ActionListener{
         panel_sembako.add(tf_total_minyakgoreng);
         panel_sembako.add(cbx_minyakgoreng);
     }
-
     public void showing_gula(){
 
         cb_gula = new JCheckBox();
@@ -415,6 +461,255 @@ public class Main extends Setting implements ActionListener{
 
         panel_sembako.add(button_reset_sembako);
     }
+    public void showing_tsel(){
+
+        cb_tsel = new JCheckBox();
+        cb_tsel.setText("Telkomsel");
+        cb_tsel.setBounds(15,15,150,50);
+        cb_tsel.setOpaque(false);
+        cb_tsel.addActionListener(this::actionPerformed);
+
+        Pulsa lp_tsel = new Pulsa();
+
+        cbx_tsel = new JComboBox<>();
+        for(int i = 0;i<lp_tsel.lp_tsel.length;i++){
+            cbx_tsel.addItem(lp_tsel.lp_tsel[i][0]);
+        }
+        cbx_tsel.setBounds(165,25,100,30);
+        cbx_tsel.addActionListener(this::actionPerformed);
+
+        tf_harga_tsel = new JTextField();
+        tf_harga_tsel.setText(lp_tsel.lp_tsel[0][1]);
+        tf_harga_tsel.setBounds(270,25,100,30);
+        tf_harga_tsel.setEnabled(false);
+        tf_harga_tsel.setDisabledTextColor(Color.black);
+
+        tf_pcs_tsel = new JTextField();
+        tf_pcs_tsel.setText("0");
+        tf_pcs_tsel.setBounds(380,25,50,30);
+        tf_pcs_tsel.addActionListener(this::actionPerformed);
+
+        lb_pcs_tsel = new JLabel();
+        lb_pcs_tsel.setText("pcs");
+        lb_pcs_tsel.setBounds(440,15,50,50);
+
+        tf_total_tsel = new JTextField();
+        tf_total_tsel.setText("0");
+        tf_total_tsel.setBounds(470,25,100,30);
+        tf_total_tsel.setEnabled(false);
+        tf_total_tsel.setDisabledTextColor(Color.black);
+
+        panel_pulsa.add(cb_tsel);
+        panel_pulsa.add(tf_harga_tsel);
+        panel_pulsa.add(tf_pcs_tsel);
+        panel_pulsa.add(lb_pcs_tsel);
+        panel_pulsa.add(tf_total_tsel);
+        panel_pulsa.add(cbx_tsel);
+    }
+    public void showing_isat(){
+
+        cb_isat = new JCheckBox();
+        cb_isat.setText("Indosat");
+        cb_isat.setBounds(15,55,150,50);
+        cb_isat.setOpaque(false);
+        cb_isat.addActionListener(this::actionPerformed);
+
+        Pulsa lp_isat = new Pulsa();
+
+        cbx_isat = new JComboBox<>();
+        for(int i = 0;i<lp_isat.lp_isat.length;i++){
+            cbx_isat.addItem(lp_isat.lp_isat[i][0]);
+        }
+        cbx_isat.setBounds(165,65,100,30);
+        cbx_isat.addActionListener(this::actionPerformed);
+
+        tf_harga_isat = new JTextField();
+        tf_harga_isat.setText(lp_isat.lp_isat[0][1]);
+        tf_harga_isat.setBounds(270,65,100,30);
+        tf_harga_isat.setEnabled(false);
+        tf_harga_isat.setDisabledTextColor(Color.black);
+
+        tf_pcs_isat = new JTextField();
+        tf_pcs_isat.setText("0");
+        tf_pcs_isat.setBounds(380,65,50,30);
+        tf_pcs_isat.addActionListener(this::actionPerformed);
+
+        lb_pcs_isat = new JLabel();
+        lb_pcs_isat.setText("pcs");
+        lb_pcs_isat.setBounds(440,55,50,50);
+
+        tf_total_isat = new JTextField();
+        tf_total_isat.setText("0");
+        tf_total_isat.setBounds(470,65,100,30);
+        tf_total_isat.setEnabled(false);
+        tf_total_isat.setDisabledTextColor(Color.black);
+
+        panel_pulsa.add(cb_isat);
+        panel_pulsa.add(tf_harga_isat);
+        panel_pulsa.add(tf_pcs_isat);
+        panel_pulsa.add(lb_pcs_isat);
+        panel_pulsa.add(tf_total_isat);
+        panel_pulsa.add(cbx_isat);
+    }
+    public void showing_smart(){
+
+        cb_smart = new JCheckBox();
+        cb_smart.setText("Smartfren");
+        cb_smart.setBounds(15,95,150,50);
+        cb_smart.setOpaque(false);
+        cb_smart.addActionListener(this::actionPerformed);
+
+        Pulsa lp_smart = new Pulsa();
+
+        cbx_smart = new JComboBox<>();
+        for(int i = 0;i<lp_smart.lp_smart.length;i++){
+            cbx_smart.addItem(lp_smart.lp_smart[i][0]);
+        }
+        cbx_smart.setBounds(165,105,100,30);
+        cbx_smart.addActionListener(this::actionPerformed);
+
+        tf_harga_smart = new JTextField();
+        tf_harga_smart.setText(lp_smart.lp_smart[0][1]);
+        tf_harga_smart.setBounds(270,105,100,30);
+        tf_harga_smart.setEnabled(false);
+        tf_harga_smart.setDisabledTextColor(Color.black);
+
+        tf_pcs_smart = new JTextField();
+        tf_pcs_smart.setText("0");
+        tf_pcs_smart.setBounds(380,105,50,30);
+        tf_pcs_smart.addActionListener(this::actionPerformed);
+
+        lb_pcs_smart = new JLabel();
+        lb_pcs_smart.setText("pcs");
+        lb_pcs_smart.setBounds(440,95,50,50);
+
+        tf_total_smart = new JTextField();
+        tf_total_smart.setText("0");
+        tf_total_smart.setBounds(470,105,100,30);
+        tf_total_smart.setEnabled(false);
+        tf_total_smart.setDisabledTextColor(Color.black);
+
+        panel_pulsa.add(cb_smart);
+        panel_pulsa.add(tf_harga_smart);
+        panel_pulsa.add(tf_pcs_smart);
+        panel_pulsa.add(lb_pcs_smart);
+        panel_pulsa.add(tf_total_smart);
+        panel_pulsa.add(cbx_smart);
+    }
+    public void showing_axis(){
+
+        cb_axis = new JCheckBox();
+        cb_axis.setText("Axis");
+        cb_axis.setBounds(15,135,150,50);
+        cb_axis.setOpaque(false);
+        cb_axis.addActionListener(this::actionPerformed);
+
+        Pulsa lp_axis = new Pulsa();
+
+        cbx_axis = new JComboBox<>();
+        for(int i = 0;i<lp_axis.lp_axis.length;i++){
+            cbx_axis.addItem(lp_axis.lp_axis[i][0]);
+        }
+        cbx_axis.setBounds(165,145,100,30);
+        cbx_axis.addActionListener(this::actionPerformed);
+
+        tf_harga_axis = new JTextField();
+        tf_harga_axis.setText(lp_axis.lp_axis[0][1]);
+        tf_harga_axis.setBounds(270,145,100,30);
+        tf_harga_axis.setEnabled(false);
+        tf_harga_axis.setDisabledTextColor(Color.black);
+
+        tf_pcs_axis = new JTextField();
+        tf_pcs_axis.setText("0");
+        tf_pcs_axis.setBounds(380,145,50,30);
+        tf_pcs_axis.addActionListener(this::actionPerformed);
+
+        lb_pcs_axis = new JLabel();
+        lb_pcs_axis.setText("pcs");
+        lb_pcs_axis.setBounds(440,135,50,50);
+
+        tf_total_axis = new JTextField();
+        tf_total_axis.setText("0");
+        tf_total_axis.setBounds(470,145,100,30);
+        tf_total_axis.setEnabled(false);
+        tf_total_axis.setDisabledTextColor(Color.black);
+
+        panel_pulsa.add(cb_axis);
+        panel_pulsa.add(tf_harga_axis);
+        panel_pulsa.add(tf_pcs_axis);
+        panel_pulsa.add(lb_pcs_axis);
+        panel_pulsa.add(tf_total_axis);
+        panel_pulsa.add(cbx_axis);
+    }
+    public void showing_tri(){
+
+        cb_tri = new JCheckBox();
+        cb_tri.setText("Tri");
+        cb_tri.setBounds(15,175,150,50);
+        cb_tri.setOpaque(false);
+        cb_tri.addActionListener(this::actionPerformed);
+
+        Pulsa lp_tri = new Pulsa();
+
+        cbx_tri = new JComboBox<>();
+        for(int i = 0;i<lp_tri.lp_tri.length;i++){
+            cbx_tri.addItem(lp_tri.lp_tri[i][0]);
+        }
+        cbx_tri.setBounds(165,185,100,30);
+        cbx_tri.addActionListener(this::actionPerformed);
+
+        tf_harga_tri = new JTextField();
+        tf_harga_tri.setText(lp_tri.lp_tri[0][1]);
+        tf_harga_tri.setBounds(270,185,100,30);
+        tf_harga_tri.setEnabled(false);
+        tf_harga_tri.setDisabledTextColor(Color.black);
+
+        tf_pcs_tri = new JTextField();
+        tf_pcs_tri.setText("0");
+        tf_pcs_tri.setBounds(380,185,50,30);
+        tf_pcs_tri.addActionListener(this::actionPerformed);
+
+        lb_pcs_tri = new JLabel();
+        lb_pcs_tri.setText("pcs");
+        lb_pcs_tri.setBounds(440,175,50,50);
+
+        tf_total_tri = new JTextField();
+        tf_total_tri.setText("0");
+        tf_total_tri.setBounds(470,185,100,30);
+        tf_total_tri.setEnabled(false);
+        tf_total_tri.setDisabledTextColor(Color.black);
+
+        panel_pulsa.add(cb_tri);
+        panel_pulsa.add(tf_harga_tri);
+        panel_pulsa.add(tf_pcs_tri);
+        panel_pulsa.add(lb_pcs_tri);
+        panel_pulsa.add(tf_total_tri);
+        panel_pulsa.add(cbx_tri);
+    }
+
+    public void showing_tf_subtotal_pulsa(){
+        lb_subtotal_pulsa = new JLabel();
+        lb_subtotal_pulsa.setText("Sub Total");
+        lb_subtotal_pulsa.setBounds(395,230,100,50);
+
+        tf_subtotal_pulsa = new JTextField();
+        tf_subtotal_pulsa.setText("0");
+        tf_subtotal_pulsa.setBounds(470,240,100,30);
+        tf_subtotal_pulsa.setEnabled(false);
+        tf_subtotal_pulsa.setDisabledTextColor(Color.black);
+
+        panel_pulsa.add(lb_subtotal_pulsa);
+        panel_pulsa.add(tf_subtotal_pulsa);
+    }
+
+    public void showing_button_reset_pulsa(){
+        button_reset_pulsa = new JButton("RESET");
+        button_reset_pulsa.setBounds(15,290,100,30);
+        button_reset_pulsa.addActionListener(this::actionPerformed);
+
+        panel_pulsa.add(button_reset_pulsa);
+    }
+
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == cb_minyakgoreng){
@@ -464,6 +759,54 @@ public class Main extends Setting implements ActionListener{
         }
         else if(e.getSource() == button_reset_sembako){
             action_button_reset_sembako();
+        }
+        else if(e.getSource() == cb_tsel){
+            action_cb_tsel();
+        }
+        else if(e.getSource() == cb_isat){
+            action_cb_isat();
+        }
+        else if(e.getSource() == cb_smart){
+            action_cb_smart();
+        }
+        else if(e.getSource() == cb_axis){
+            action_cb_axis();
+        }
+        else if(e.getSource() == cb_tri){
+            action_cb_tri();
+        }
+        else if(e.getSource() == cbx_tsel){
+            action_cbx_tsel();
+        }
+        else if(e.getSource() == cbx_isat){
+            action_cbx_isat();
+        }
+        else if(e.getSource() == cbx_smart){
+            action_cbx_smart();
+        }
+        else if(e.getSource() == cbx_axis){
+            action_cbx_axis();
+        }
+        else if(e.getSource() == cbx_tri){
+            action_cbx_tri();
+        }
+        else if(e.getSource() == tf_pcs_tsel){
+            action_tf_pcs_tsel();
+        }
+        else if(e.getSource() == tf_pcs_isat){
+            action_tf_pcs_isat();
+        }
+        else if(e.getSource() == tf_pcs_smart){
+            action_tf_pcs_smart();
+        }
+        else if(e.getSource() == tf_pcs_axis){
+            action_tf_pcs_axis();
+        }
+        else if(e.getSource() == tf_pcs_tri){
+            action_tf_pcs_tri();
+        }
+        else if(e.getSource() == button_reset_pulsa){
+            action_button_reset_pulsa();
         }
     }
 
@@ -532,6 +875,66 @@ public class Main extends Setting implements ActionListener{
 
         hitung_subtotal_sembako();
     }
+    public void action_cb_tsel(){
+        if(cb_tsel.isSelected()){
+            is_buy_tsel = true;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            is_buy_tsel = false;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_cb_isat(){
+        if(cb_isat.isSelected()){
+            is_buy_isat = true;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            is_buy_isat = false;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_cb_smart(){
+        if(cb_smart.isSelected()){
+            is_buy_smart = true;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            is_buy_smart = false;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_cb_axis(){
+        if(cb_axis.isSelected()){
+            is_buy_axis = true;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            is_buy_axis = false;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_cb_tri(){
+        if(cb_tri.isSelected()){
+            is_buy_tri = true;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            is_buy_tri = false;
+            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
 
     public void action_cbx_minyakgoreng(){
         Sembako ls_mg = new Sembako();
@@ -597,6 +1000,67 @@ public class Main extends Setting implements ActionListener{
         tf_pcs_susu.setText("0");
         tf_total_susu.setText("0");
     }
+    public void action_cbx_tsel(){
+        Pulsa lp_tsel = new Pulsa();
+
+        for(int i = 0;i<lp_tsel.lp_tsel.length;i++){
+            if(cbx_tsel.getSelectedItem().equals(lp_tsel.lp_tsel[i][0])){
+                tf_harga_tsel.setText(lp_tsel.lp_tsel[i][1]);
+            }
+        }
+
+        tf_pcs_tsel.setText("0");
+        tf_total_tsel.setText("0");
+    }
+    public void action_cbx_isat(){
+        Pulsa lp_isat = new Pulsa();
+
+        for(int i = 0;i<lp_isat.lp_isat.length;i++){
+            if(cbx_isat.getSelectedItem().equals(lp_isat.lp_isat[i][0])){
+                tf_harga_isat.setText(lp_isat.lp_isat[i][1]);
+            }
+        }
+
+        tf_pcs_isat.setText("0");
+        tf_total_isat.setText("0");
+    }
+    public void action_cbx_smart(){
+        Pulsa lp_smart = new Pulsa();
+
+        for(int i = 0;i<lp_smart.lp_smart.length;i++){
+            if(cbx_smart.getSelectedItem().equals(lp_smart.lp_smart[i][0])){
+                tf_harga_smart.setText(lp_smart.lp_smart[i][1]);
+            }
+        }
+
+        tf_pcs_smart.setText("0");
+        tf_total_smart.setText("0");
+    }
+    public void action_cbx_axis(){
+        Pulsa lp_axis = new Pulsa();
+
+        for(int i = 0;i<lp_axis.lp_axis.length;i++){
+            if(cbx_axis.getSelectedItem().equals(lp_axis.lp_axis[i][0])){
+                tf_harga_axis.setText(lp_axis.lp_axis[i][1]);
+            }
+        }
+
+        tf_pcs_axis.setText("0");
+        tf_total_axis.setText("0");
+    }
+    public void action_cbx_tri(){
+        Pulsa lp_tri = new Pulsa();
+
+        for(int i = 0;i<lp_tri.lp_tri.length;i++){
+            if(cbx_tri.getSelectedItem().equals(lp_tri.lp_tri[i][0])){
+                tf_harga_tri.setText(lp_tri.lp_tri[i][1]);
+            }
+        }
+
+        tf_pcs_tri.setText("0");
+        tf_total_tri.setText("0");
+    }
+
 
     public void action_tf_pcs_minyakgoreng(){
         try{
@@ -682,6 +1146,86 @@ public class Main extends Setting implements ActionListener{
 
         hitung_subtotal_sembako();
     }
+    public void action_tf_pcs_tsel(){
+        try{
+            int harga = Integer.parseInt(tf_harga_tsel.getText());
+            int qty = Integer.parseInt(tf_pcs_tsel.getText());
+
+            int total = harga * qty;
+            tf_total_tsel.setText(Integer.toString(total));
+
+        }catch (Exception exc){
+            tf_pcs_tsel.setText("0");
+            tf_total_tsel.setText("0");
+            JOptionPane.showMessageDialog(null,exc.getMessage(),"Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_tf_pcs_isat(){
+        try{
+            int harga = Integer.parseInt(tf_harga_isat.getText());
+            int qty = Integer.parseInt(tf_pcs_isat.getText());
+
+            int total = harga * qty;
+            tf_total_isat.setText(Integer.toString(total));
+
+        }catch (Exception exc){
+            tf_pcs_isat.setText("0");
+            tf_total_isat.setText("0");
+            JOptionPane.showMessageDialog(null,exc.getMessage(),"Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_tf_pcs_smart(){
+        try{
+            int harga = Integer.parseInt(tf_harga_smart.getText());
+            int qty = Integer.parseInt(tf_pcs_smart.getText());
+
+            int total = harga * qty;
+            tf_total_smart.setText(Integer.toString(total));
+
+        }catch (Exception exc){
+            tf_pcs_smart.setText("0");
+            tf_total_smart.setText("0");
+            JOptionPane.showMessageDialog(null,exc.getMessage(),"Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_tf_pcs_axis(){
+        try{
+            int harga = Integer.parseInt(tf_harga_axis.getText());
+            int qty = Integer.parseInt(tf_pcs_axis.getText());
+
+            int total = harga * qty;
+            tf_total_axis.setText(Integer.toString(total));
+
+        }catch (Exception exc){
+            tf_pcs_axis.setText("0");
+            tf_total_axis.setText("0");
+            JOptionPane.showMessageDialog(null,exc.getMessage(),"Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
+    public void action_tf_pcs_tri(){
+        try{
+            int harga = Integer.parseInt(tf_harga_tri.getText());
+            int qty = Integer.parseInt(tf_pcs_tri.getText());
+
+            int total = harga * qty;
+            tf_total_tri.setText(Integer.toString(total));
+
+        }catch (Exception exc){
+            tf_pcs_tri.setText("0");
+            tf_total_tri.setText("0");
+            JOptionPane.showMessageDialog(null,exc.getMessage(),"Error!", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        hitung_subtotal_pulsa();
+    }
 
     public void action_button_reset_sembako(){
         cb_minyakgoreng.setSelected(false);
@@ -746,6 +1290,53 @@ public class Main extends Setting implements ActionListener{
         tf_total_susu.setText("0");
         tf_subtotal_sembako.setText("0");
     }
+    public void action_button_reset_pulsa(){
+        cb_tsel.setSelected(false);
+        cb_isat.setSelected(false);
+        cb_smart.setSelected(false);
+        cb_axis.setSelected(false);
+        cb_tri.setSelected(false);
+
+        is_buy_tsel = false;
+        is_buy_isat = false;
+        is_buy_smart = false;
+        is_buy_axis = false;
+        is_buy_tri = false;
+
+        cbx_tsel.setSelectedIndex(0);
+        cbx_isat.setSelectedIndex(0);
+        cbx_smart.setSelectedIndex(0);
+        cbx_axis.setSelectedIndex(0);
+        cbx_tri.setSelectedIndex(0);
+
+        Pulsa lp = new Pulsa();
+
+        for(int i = 0;i<lp.lp_tsel.length;i++){
+            if(cbx_tsel.getSelectedItem().equals(lp.lp_tsel[i][0])){
+                tf_harga_tsel.setText(lp.lp_tsel[i][1]);
+            }
+        }
+        for(int i = 0;i<lp.lp_isat.length;i++){
+            if(cbx_isat.getSelectedItem().equals(lp.lp_isat[i][0])){
+                tf_harga_isat.setText(lp.lp_isat[i][1]);
+            }
+        }
+        for(int i = 0;i<lp.lp_smart.length;i++){
+            if(cbx_smart.getSelectedItem().equals(lp.lp_smart[i][0])){
+                tf_harga_smart.setText(lp.lp_smart[i][1]);
+            }
+        }
+        for(int i = 0;i<lp.lp_axis.length;i++){
+            if(cbx_axis.getSelectedItem().equals(lp.lp_axis[i][0])){
+                tf_harga_axis.setText(lp.lp_axis[i][1]);
+            }
+        }
+        for(int i = 0;i<lp.lp_tri.length;i++){
+            if(cbx_tri.getSelectedItem().equals(lp.lp_tri[i][0])){
+                tf_harga_tri.setText(lp.lp_tri[i][1]);
+            }
+        }
+    }
 
     public void hitung_subtotal_sembako(){
         int subtotal_mg = 0;
@@ -792,6 +1383,52 @@ public class Main extends Setting implements ActionListener{
         int subtotal = subtotal_mg + subtotal_gula + subtotal_beras + subtotal_telur + subtotal_susu;
 
         tf_subtotal_sembako.setText(Integer.toString(subtotal));
+    }
+    public void hitung_subtotal_pulsa(){
+        int subtotal_tsel = 0;
+        int subtotal_isat = 0;
+        int subtotal_smart = 0;
+        int subtotal_axis = 0;
+        int subtotal_tri = 0;
+
+        if(is_buy_tsel == true){
+            subtotal_tsel = Integer.parseInt(tf_total_tsel.getText());
+        }
+        else{
+            subtotal_tsel = 0;
+        }
+
+        if(is_buy_isat == true){
+            subtotal_isat = Integer.parseInt(tf_total_isat.getText());
+        }
+        else{
+            subtotal_isat = 0;
+        }
+
+        if(is_buy_smart == true){
+            subtotal_smart = Integer.parseInt(tf_total_smart.getText());
+        }
+        else{
+            subtotal_smart = 0;
+        }
+
+        if(is_buy_axis == true){
+            subtotal_axis = Integer.parseInt(tf_total_axis.getText());
+        }
+        else{
+            subtotal_axis = 0;
+        }
+
+        if(is_buy_tri == true){
+            subtotal_tri = Integer.parseInt(tf_total_tri.getText());
+        }
+        else{
+            subtotal_tri = 0;
+        }
+
+        int subtotal = subtotal_tsel + subtotal_isat + subtotal_smart + subtotal_axis + subtotal_tri;
+
+        tf_subtotal_pulsa.setText(Integer.toString(subtotal));
     }
 
 }
