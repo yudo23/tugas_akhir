@@ -49,7 +49,7 @@ public class Login implements ActionListener {
     public void frame_close() {
         JLabel footer = new JLabel();
         footer.setText("DEVELOPED BY MUJAHIDDIN A.A (210533616011),YUDO DENDY(210533616046) ,WINDI WAHYU(210533616037) - S1 PENDIDIKAN TEKNIK INFORMATIKA B");
-        footer.setBounds(15, 810, 1000, 100);
+        footer.setBounds(15, 810, 1280, 720);
         footer.setFont(new Font("Arial", 1, 12));
         content.add(footer);
         jframe.setVisible(true);
