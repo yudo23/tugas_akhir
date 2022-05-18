@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Login implements ActionListener {
+public class Login extends Setting implements ActionListener {
     public JFrame jframe;
     public Container content;
     public JLabel lb_username;
@@ -35,11 +35,18 @@ public class Login implements ActionListener {
         frame_close();
     }
 
+    public String developer(){
+        return super.developer();
+    }
+
+    public String nama_toko(){
+        return super.nama_toko();
+    }
+
     public void frame_open() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         jframe = new JFrame();
-        jframe.setTitle("TOKO MYW");
-        jframe.setBounds(0, 0, screenSize.width, screenSize.height);
+        jframe.setTitle("TOKO "+nama_toko());
+        jframe.setBounds(0, 0, 1280, 720);
         jframe.setDefaultCloseOperation(3);
         jframe.setResizable(false);
         content = jframe.getContentPane();
@@ -48,8 +55,8 @@ public class Login implements ActionListener {
 
     public void frame_close() {
         JLabel footer = new JLabel();
-        footer.setText("DEVELOPED BY MUJAHIDDIN A.A (210533616011),YUDO DENDY(210533616046) ,WINDI WAHYU(210533616037) - S1 PENDIDIKAN TEKNIK INFORMATIKA B");
-        footer.setBounds(15, 810, 1280, 720);
+        footer.setText(developer());
+        footer.setBounds(20, 620, 1000, 100);
         footer.setFont(new Font("Arial", 1, 12));
         content.add(footer);
         jframe.setVisible(true);
