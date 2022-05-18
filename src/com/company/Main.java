@@ -1004,11 +1004,11 @@ public class Main extends Setting implements ActionListener{
     public void action_cb_isat(){
         if(cb_isat.isSelected()){
             is_buy_isat = true;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Indosat berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             is_buy_isat = false;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Indosat gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
 
         hitung_subtotal_pulsa();
@@ -1017,11 +1017,11 @@ public class Main extends Setting implements ActionListener{
     public void action_cb_smart(){
         if(cb_smart.isSelected()){
             is_buy_smart = true;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Smartfren berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             is_buy_smart = false;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Smartfren gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
 
         hitung_subtotal_pulsa();
@@ -1030,11 +1030,11 @@ public class Main extends Setting implements ActionListener{
     public void action_cb_axis(){
         if(cb_axis.isSelected()){
             is_buy_axis = true;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Axis berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             is_buy_axis = false;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Axis gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
 
         hitung_subtotal_pulsa();
@@ -1043,11 +1043,11 @@ public class Main extends Setting implements ActionListener{
     public void action_cb_tri(){
         if(cb_tri.isSelected()){
             is_buy_tri = true;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Tri berhasil dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             is_buy_tri = false;
-            JOptionPane.showMessageDialog(null,"Pulsa Telkomsel gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Pulsa Tri gagal dipilih","Informasi Pembelian", JOptionPane.INFORMATION_MESSAGE);
         }
 
         hitung_subtotal_pulsa();
